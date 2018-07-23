@@ -1,0 +1,24 @@
+---
+
+- name: Install Oh My Zsh repository.
+  git:
+    repo: https://github.com/robbyrussell/oh-my-zsh.git
+    dest: ~/.oh-my-zsh
+    update: no
+
+- name: Configure Zsh.
+  copy:
+    src: files/home/.zshrc
+    dest: ~/.zshrc
+
+- name: Install Vundle repository.
+  git:
+    repo: https://github.com/VundleVim/Vundle.vim
+    dest: ~/.vim/bundle/Vundle.vim
+    update: no
+
+- name: Configure Vim.
+  copy:
+    src: files/home/.vimrc
+    dest: ~/.vimrc
+

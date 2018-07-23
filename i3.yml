@@ -1,0 +1,21 @@
+---
+
+- name: Install i3*, SLiM and tools.
+  pkgng:
+    name: >
+      dmenu,
+      i3,
+      i3lock,
+      i3status,
+      rxvt-unicode,
+      slim,
+      urxvt-font-size,
+      urxvt-perls,
+      xterm
+
+- name: Enable SLiM on tty8.
+  lineinfile:
+    path: /etc/ttys
+    regexp: '^ttyv8'
+    line: 'ttyv8   "/usr/local/bin/slim"   xterm   on secure'
+

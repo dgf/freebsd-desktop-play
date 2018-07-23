@@ -1,0 +1,48 @@
+---
+
+- name: Enable Intel Graphics hardware acceleration.
+  lineinfile:
+    path: /boot/loader.conf
+    regexp: '^i915kms_load='
+    line: 'i915kms_load="YES"'
+
+- name: Enable Intel GPU power saving mode.
+  lineinfile:
+    path: /boot/loader.conf
+    regexp: '^drm.i915.enable_rc6='
+    line: 'drm.i915.enable_rc6=7'
+
+- name: Enable touchpad support.
+  lineinfile:
+    path: /boot/loader.conf
+    regexp: '^hw.psm.synaptics_support='
+    line: 'hw.psm.synaptics_support=1'
+
+- name: Enable trackpoint support.
+  lineinfile:
+    path: /boot/loader.conf
+    regexp: '^hw.psm.trackpoint_support='
+    line: 'hw.psm.trackpoint_support=1'
+
+- name: Disable the touchpad by default.
+  sysctl:
+    name: hw.psm.synaptics.touchpad_off
+    value: 1
+
+- name: Enable IBM ACPI module.
+  lineinfile:
+    path: /boot/loader.conf
+    regexp: '^acpi_ibm_load='
+    line: 'acpi_ibm_load="YES"'
+
+- name: Enable CPU temperature monitoring.
+  lineinfile:
+    path: /boot/loader.conf
+    regexp: '^coretemp_load='
+    line: 'coretemp_load="YES"'
+
+- name: Suspend on lid close.
+  sysctl:
+    name: hw.acpi.lid_switch_state
+    value: S3
+

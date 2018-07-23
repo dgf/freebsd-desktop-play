@@ -1,0 +1,27 @@
+---
+
+- name: Configure fonts.
+  copy:
+    src: files/home/.config/fontconfig/fonts.conf
+    dest: ~/.config/fontconfig/fonts.conf
+
+- name: Configure Xinit.
+  copy:
+    src: files/home/.xinitrc
+    dest: ~/.xinitrc
+
+- name: Configure Xresources.
+  copy:
+    src: files/home/.Xresources
+    dest: ~/.Xresources
+
+- name: Configure i3 WM.
+  copy:
+    src: files/home/.config/i3/config
+    dest: ~/.config/i3/config
+
+- name: Configure i3 status.
+  copy:
+    src: files/home/.config/i3status/config
+    dest: ~/.config/i3status/config
+

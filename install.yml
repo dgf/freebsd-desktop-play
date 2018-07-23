@@ -1,0 +1,10 @@
+---
+
+- hosts: localhost
+  tasks:
+
+  - import_tasks: x220.yml
+  - import_tasks: xorg.yml
+  - import_tasks: workstation.yml
+  - import_tasks: i3.yml
+  - import_tasks: dev.yml

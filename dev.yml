@@ -1,0 +1,8 @@
+---
+
+- name: Install programming languages.
+  pkgng:
+    name: >
+      go,
+      openjdk8
+

@@ -1,0 +1,102 @@
+---
+
+- name: Install command line tools.
+  pkgng:
+    name: >
+      ansible,
+      bash,
+      git,
+      htop,
+      pkg_cutleaves,
+      pkg,
+      screen,
+      vim,
+      wget,
+      zsh
+
+- name: Install desktop applications.
+  pkgng:
+    name: >
+      chromium,
+      firefox,
+      gimp,
+      inkscape,
+      libreoffice,
+      mplayer,
+      thunderbird
+
+- name: Enable in-memory filesystems.
+  lineinfile:
+    path: /boot/loader.conf
+    regexp: '^tmpfs_load='
+    line: 'tmpfs_load="YES"'
+
+- name: Enable powerd.
+  lineinfile:
+    path: /etc/rc.conf
+    regexp: '^powerd_enable='
+    line: 'powerd_enable="YES"'
+
+- name: Configure powerd modes.
+  lineinfile:
+    path: /etc/rc.conf
+    regexp: '^powerd_flags='
+    line: 'powerd_flags="-a hiadaptive -b adaptive"'
+
+- name: Configure performance cstate.
+  lineinfile:
+    path: /etc/rc.conf
+    regexp: '^performance_cx_lowest='
+    line: 'performance_cx_lowest="Cmax"'
+
+- name: Configure economy cstate.
+  lineinfile:
+    path: /etc/rc.conf
+    regexp: '^economy_cx_lowest='
+    line: 'economy_cx_lowest="Cmax"'
+
+- name: Shared memory for Chromium.
+  sysctl:
+    name: kern.ipc.shm_allow_removed
+    value: 1
+
+- name: Enable NTP to synchronize the system time.
+  lineinfile:
+    path: /etc/rc.conf
+    regexp: '^ntpd_enable='
+    line: 'ntpd_enable="YES"'
+
+- name: Configure NTP panicgate.
+  lineinfile:
+    path: /etc/rc.conf
+    regexp: '^ntpd_flags='
+    line: 'ntpd_flags="-g"'
+
+- name: Enable IPFW.
+  lineinfile:
+    path: /etc/rc.conf
+    regexp: '^firewall_enable='
+    line: 'firewall_enable="YES"'
+
+- name: Use IPFW workstation type.
+  lineinfile:
+    path: /etc/rc.conf
+    regexp: '^firewall_type='
+    line: 'firewall_type="workstation"'
+
+- name: Enable virtual terminal.
+  lineinfile:
+    path: /boot/loader.conf
+    regexp: '^kern.vty='
+    line: 'kern.vty=vt'
+
+- name: Disable system beep.
+  sysctl:
+    name: hw.syscons.bell
+    value: 0
+
+- name: Disable virtual beep.
+  sysctl:
+    name: kern.vt.enable_bell
+    value: 0
+

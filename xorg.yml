@@ -1,0 +1,43 @@
+---
+
+- name: Install Xorg and fonts.
+  pkgng:
+    name: >
+      misc/figlet-fonts,
+      print/gsfonts,
+      x11-fonts/anonymous-pro,
+      x11-fonts/artwiz-aleczapka,
+      x11-fonts/dejavu,
+      x11-fonts/droid-fonts-ttf,
+      x11-fonts/hack-font,
+      x11-fonts/junicode,
+      x11-fonts/terminus-font,
+      x11-fonts/ubuntu-font,
+      x11-fonts/urwfonts-ttf,
+      x11-fonts/webfonts,
+      xorg
+
+- name: Enable DBUS daemon.
+  lineinfile:
+    path: /etc/rc.conf
+    regexp: '^dbus_enable='
+    line: 'dbus_enable="YES"'
+
+- name: Enable HALD daemon.
+  lineinfile:
+    path: /etc/rc.conf
+    regexp: '^hald_enable='
+    line: 'hald_enable="YES"'
+
+- name: Enable mouse daemon.
+  lineinfile:
+    path: /etc/rc.conf
+    regexp: '^moused_enable='
+    line: 'moused_enable="YES"'
+
+- name: Enable virtual scrolling.
+  lineinfile:
+    path: /etc/rc.conf
+    regexp: '^moused_flags='
+    line: 'moused_flags="-H -V"'
+

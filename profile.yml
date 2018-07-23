@@ -1,0 +1,6 @@
+---
+
+- hosts: localhost
+  tasks:
+  - import_tasks: cli.yml
+  - import_tasks: desktop.yml
